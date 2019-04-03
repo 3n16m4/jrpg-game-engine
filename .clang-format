@@ -1,0 +1,16 @@
+# this file specifies the formatting of the coding style
+# for more information about the options and clang-format see https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+# We'll use defaults from the LLVM style, but with 4 columns indentation.
+BasedOnStyle: LLVM
+IndentCaseLabels: true
+ColumnLimit: 120
+IndentWidth: 4
+SortIncludes: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+KeepEmptyLinesAtTheStartOfBlocks: false
+NamespaceIndentation: All
