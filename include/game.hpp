@@ -5,6 +5,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include <string>
+#include <ostream>
 
 class game {
   public:
@@ -12,6 +13,13 @@ class game {
     ~game() = default;
 
     void run();
+
+    std::size_t get_width() const;
+    std::size_t get_height() const;
+    std::size_t get_framerate() const;
+    const std::string &get_title() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const game &game);
 
   private:
     std::size_t _width;

@@ -35,3 +35,25 @@ void game::run() {
         _window.display();
     }
 }
+
+std::size_t game::get_width() const {
+    return _width;
+}
+
+std::size_t game::get_height() const {
+    return _height;
+}
+
+std::size_t game::get_framerate() const {
+    return _framerate;
+}
+
+const std::string &game::get_title() const {
+    return _title;
+}
+
+std::ostream &operator<<(std::ostream &os, const game &game) {
+    os << "_width: " << game._width << " _height: " << game._height << " _framerate: " << game._framerate
+       << " _title: " << game._title;
+    return os;
+}

@@ -14,7 +14,9 @@
 #include "../include/game.hpp"
 
 int main() {
-    game engine{600, 480, "jrpg game-engine"};
+    game engine{640, 480, "jrpg game-engine"};
+    std::cout << engine << '\n';
+
     engine.run();
 
     return EXIT_SUCCESS;
