@@ -2,42 +2,57 @@
 #define JRPG_GAME_ENGINE_STATE_MACHINE_HPP
 
 #include <memory>
+#include <iostream>
 #include <stack>
 
 #include "state.hpp"
 
 namespace jrpg {
-    using StateType = std::unique_ptr<state>;
+    using State = std::unique_ptr<state>;
 
     class state_machine {
       public:
         explicit state_machine();
-        ~state_machine() = default;
+        ~state_machine();
 
         state_machine(const state_machine &) = delete;
         state_machine &operator=(const state_machine &) = delete;
 
-        void add_state(StateType state, bool replacing = true);
-        void last_state();
+        template <typename T, typename... Targs>
+        void push(Targs &&... args) {
+            _adding = true;
+            _replacing = false;
+            _next_state = std::make_unique<T>(args...);
+        }
 
-        void handle_state_machine();
+        template <typename T, typename... Targs>
+        void replace(Targs &&... args) {
+            _adding = true;
+            _replacing = true;
+            _next_state = std::make_unique<T>(args...);
+        }
+
+        void next_state();
+        void last_state();
         void quit();
 
-        StateType &current_state();
+        void handle_events();
+        void handle_inputs();
+        void update(float deltaTime);
+        void draw(float deltaTime);
+
+        void clear();
 
         bool is_running() const;
-        bool is_adding() const;
-        bool is_replacing() const;
-        bool is_resuming() const;
 
       private:
-        std::stack<StateType> _states;
-        StateType _new_state;
+        std::stack<State> _states;
+        State _next_state;
 
         bool _running;
-        bool _adding;
         bool _replacing;
         bool _resuming;
+        bool _adding;
     };
 } // namespace jrpg
 

@@ -1,5 +1,5 @@
-#ifndef JRPG_GAME_ENGINE_INTRO_STATE_HPP
-#define JRPG_GAME_ENGINE_INTRO_STATE_HPP
+#ifndef JRPG_GAME_ENGINE_MENU_STATE_HPP
+#define JRPG_GAME_ENGINE_MENU_STATE_HPP
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -13,10 +13,10 @@
 #include "asset_manager.hpp"
 
 namespace jrpg {
-    class intro_state : public state {
+    class menu_state : public state {
       public:
-        explicit intro_state(jrpg::state_machine &machine, sf::RenderWindow &window);
-        ~intro_state() override;
+        explicit menu_state(state_machine &machine, sf::RenderWindow &window);
+        ~menu_state() override;
 
         void init() override;
         void cleanup() override;
@@ -30,11 +30,9 @@ namespace jrpg {
         void pause() override;
 
       private:
-        jrpg::Texture _texture;
+        sf::Texture _texture;
         sf::Sprite _sprite;
-        sf::RectangleShape _rect;
-        sf::Color _alpha;
     };
 } // namespace jrpg
 
-#endif // JRPG_GAME_ENGINE_INTRO_STATE_HPP
+#endif // JRPG_GAME_ENGINE_MENU_STATE_HPP

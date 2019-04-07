@@ -1,50 +1,51 @@
 #include "../include/game.hpp"
 
-jrpg::game::game(std::size_t width, std::size_t height, std::string title, std::size_t framerate) {
-    _width = width;
-    _height = height;
-    _framerate = framerate;
-    _title = std::move(title);
+namespace jrpg {
+    game::game(std::size_t width, std::size_t height, std::string title, std::size_t framerate) {
+        _width = width;
+        _height = height;
+        _framerate = framerate;
+        _title = std::move(title);
 
-    _machine.add_state(StateType(std::make_unique<intro_state>(_machine, _window)));
-}
-
-void jrpg::game::run() {
-    _window.create(sf::VideoMode(_width, _height), _title);
-    _window.setFramerateLimit(_framerate);
-
-    while (_window.isOpen() && _machine.is_running()) {
-        _machine.handle_state_machine();
-
-        // handle input, update and draw each game state
-        _machine.current_state()->handle_events();
-        _machine.current_state()->handle_inputs();
-        _machine.current_state()->update(0.0f);
-        _machine.current_state()->draw(0.0f);
+        _machine.push<intro_state>(_machine, _window);
     }
 
-    // cleanup if necessary
-    std::cout << "Statemachine or window not running anymore.\n";
-}
+    void game::run() {
+        _window.create(sf::VideoMode(_width, _height), _title, sf::Style::Titlebar | sf::Style::Close);
+        _window.setFramerateLimit(_framerate);
 
-std::size_t jrpg::game::get_width() const {
-    return _width;
-}
+        while (_window.isOpen() && _machine.is_running()) {
+            // handle input, update and draw each game state
+            _machine.next_state();
+            _machine.handle_events();
+            _machine.handle_inputs();
+            _machine.update(0.0f);
+            _machine.draw(0.0f);
+        }
 
-std::size_t jrpg::game::get_height() const {
-    return _height;
-}
+        // cleanup if necessary
+        std::cout << "Statemachine or window not running anymore.\n";
+    }
 
-std::size_t jrpg::game::get_framerate() const {
-    return _framerate;
-}
+    std::size_t game::get_width() const {
+        return _width;
+    }
 
-const std::string &jrpg::game::get_title() const {
-    return _title;
-}
+    std::size_t game::get_height() const {
+        return _height;
+    }
 
-std::ostream &jrpg::operator<<(std::ostream &os, const jrpg::game &game) {
-    os << "_width: " << game._width << " _height: " << game._height << " _framerate: " << game._framerate
-       << " _title: " << game._title;
-    return os;
-}
+    std::size_t game::get_framerate() const {
+        return _framerate;
+    }
+
+    const std::string &game::get_title() const {
+        return _title;
+    }
+
+    std::ostream &operator<<(std::ostream &os, const game &game) {
+        os << "_width: " << game._width << " _height: " << game._height << " _framerate: " << game._framerate
+           << " _title: " << game._title;
+        return os;
+    }
+} // namespace jrpg
