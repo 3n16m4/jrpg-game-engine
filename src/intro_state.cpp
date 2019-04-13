@@ -17,7 +17,7 @@ namespace jrpg {
         // _texture = asset_manager::get_texture("intro", "res/intro.png");
 
         _texture = std::make_unique<sf::Texture>();
-        _texture->loadFromFile("res/intro.png");
+        _texture->loadFromFile("../res/intro.png");
         _sprite.setTexture(*_texture, true);
 
         _alpha = sf::Color(0, 0, 0, 255);

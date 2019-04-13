@@ -14,7 +14,7 @@ namespace jrpg {
     void play_state::init() {
         std::cout << "Play State init\n";
 
-        _texture.loadFromFile("res/play.png");
+        _texture.loadFromFile("../res/play.png");
 
         _sprite.setTexture(_texture, true);
     }

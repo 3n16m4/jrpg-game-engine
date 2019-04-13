@@ -16,7 +16,7 @@ int main() {
     std::vector<int32_t> level;
     level.reserve(10 * 12);
 
-    std::ifstream file("res/maps/map_001.csv");
+    std::ifstream file("../res/maps/map_001.csv");
 
     std::stringstream ss;
     if (file) {
@@ -31,7 +31,7 @@ int main() {
     }
 
     jrpg::tile_map map("map_001", level.size(), 10, 12);
-    if (!map.load("res/pokemon_emerald.png", level, {TILE_SIZE_X, TILE_SIZE_Y}, 10, 12)) {
+    if (!map.load("../res/pokemon_emerald.png", level, {TILE_SIZE_X, TILE_SIZE_Y}, 10, 12)) {
         return EXIT_FAILURE;
     }
 
