@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../include/tile.hpp"
 
 namespace jrpg {

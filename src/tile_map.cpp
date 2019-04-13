@@ -1,4 +1,3 @@
-#include <iostream>
 #include "../include/tile_map.hpp"
 
 namespace jrpg {

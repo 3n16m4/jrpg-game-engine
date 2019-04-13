@@ -7,6 +7,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <memory>
+
 namespace jrpg {
     using Texture = std::shared_ptr<sf::Texture>;
 
