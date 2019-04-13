@@ -10,7 +10,7 @@
 #include "intro_state.hpp"
 
 namespace jrpg {
-    class game {
+    class game final {
       public:
         explicit game(std::size_t width, std::size_t height, std::string title, std::size_t framerate = 60);
         ~game() = default;

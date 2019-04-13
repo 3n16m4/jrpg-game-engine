@@ -13,7 +13,7 @@
 #include "asset_manager.hpp"
 
 namespace jrpg {
-    class play_state : public state {
+    class play_state final : public state {
       public:
         explicit play_state(state_machine &machine, sf::RenderWindow &window);
         ~play_state() override;

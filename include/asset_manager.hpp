@@ -8,11 +8,13 @@
 #include <string>
 #include <unordered_map>
 
+#include "singleton.hpp"
+
 namespace jrpg {
     using Texture = std::shared_ptr<sf::Texture>;
     using Font = std::shared_ptr<sf::Font>;
 
-    class asset_manager {
+    class asset_manager final : public singleton<asset_manager> {
       public:
         explicit asset_manager() = default;
         ~asset_manager() = default;

@@ -13,7 +13,7 @@
 #include "asset_manager.hpp"
 
 namespace jrpg {
-    class menu_state : public state {
+    class menu_state final : public state {
       public:
         explicit menu_state(state_machine &machine, sf::RenderWindow &window);
         ~menu_state() override;

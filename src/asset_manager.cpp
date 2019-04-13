@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../include/asset_manager.hpp"
 
 namespace jrpg {

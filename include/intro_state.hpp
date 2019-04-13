@@ -13,7 +13,7 @@
 #include "asset_manager.hpp"
 
 namespace jrpg {
-    class intro_state : public state {
+    class intro_state final : public state {
       public:
         explicit intro_state(jrpg::state_machine &machine, sf::RenderWindow &window);
         ~intro_state() override;

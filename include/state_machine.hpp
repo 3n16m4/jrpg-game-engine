@@ -10,7 +10,7 @@
 namespace jrpg {
     using State = std::unique_ptr<state>;
 
-    class state_machine {
+    class state_machine final {
       public:
         explicit state_machine();
         ~state_machine();

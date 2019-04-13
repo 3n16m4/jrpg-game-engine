@@ -19,7 +19,9 @@ namespace jrpg {
         virtual ~state() = default;
 
         state(const state &) = delete;
-        virtual state &operator=(const state &) = delete;
+        state(state &&) = delete;
+        state &operator=(const state &) = delete;
+        state &&operator=(state &) = delete;
 
         virtual void init() = 0;
         virtual void cleanup() = 0;
