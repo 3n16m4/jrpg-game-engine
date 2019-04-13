@@ -28,6 +28,9 @@ namespace jrpg {
         void free_textures();
         void free_fonts();
 
+        void free_dangling_texture();
+        void free_dangling_fonts();
+
       private:
         std::unordered_map<std::string, Texture> _textures;
         std::unordered_map<std::string, Font> _fonts;

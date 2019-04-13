@@ -38,6 +38,8 @@ namespace jrpg {
             }
         }
 
+        asset_manager.free_textures();
+
         return true;
     }
 

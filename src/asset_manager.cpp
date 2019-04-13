@@ -30,7 +30,8 @@ namespace jrpg {
         return it == _fonts.end() ? nullptr : _fonts.at(name);
     }
 
-    void asset_manager::free_textures() {
+    void asset_manager::free_dangling_texture() {
+        std::cout << "previously: " << _textures.size() << '\n';
         for (auto it = _textures.begin(); it != _textures.end();) {
             if (it->second.unique()) {
                 it = _textures.erase(it);
@@ -38,9 +39,18 @@ namespace jrpg {
                 ++it;
             }
         }
+        std::cout << "now: " << _textures.size() << '\n';
+    }
+
+    void asset_manager::free_textures() {
+        _textures.clear();
     }
 
     void asset_manager::free_fonts() {
+        _fonts.clear();
+    }
+
+    void asset_manager::free_dangling_fonts() {
         for (auto it = _fonts.begin(); it != _fonts.end();) {
             if (it->second.unique()) {
                 it = _fonts.erase(it);

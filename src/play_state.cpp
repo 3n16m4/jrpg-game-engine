@@ -14,9 +14,12 @@ namespace jrpg {
     void play_state::init() {
         std::cout << "Play State init\n";
 
-        _texture.loadFromFile("../res/play.png");
+        auto &asset_manager = asset_manager::instance();
+        if (!asset_manager.load_texture("play", "../res/play.png")) {
+            return;
+        }
 
-        _sprite.setTexture(_texture, true);
+        _sprite.setTexture(*asset_manager.get_texture("play"), true);
     }
 
     void play_state::cleanup() {

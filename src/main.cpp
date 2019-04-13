@@ -62,9 +62,9 @@ int main() {
             }
             if (event.type == sf::Event::KeyPressed) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-                    // map.clear();
+                    map.clear();
                     // remove tile at position (6, 6) in points or 96px * 96px
-                    map.remove({96.f, 96.f});
+                    // map.remove({96.f, 96.f});
                     std::cout << map.get_tiles().size() << " tiles in TileMap\n";
                 }
             }

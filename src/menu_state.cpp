@@ -13,9 +13,12 @@ namespace jrpg {
     void menu_state::init() {
         std::cout << "Menu State init\n";
 
-        _texture.loadFromFile("../res/menu.png");
+        auto &asset_manager = asset_manager::instance();
+        if (!asset_manager.load_texture("menu", "../res/menu.png")) {
+            return;
+        }
 
-        _sprite.setTexture(_texture, true);
+        _sprite.setTexture(*asset_manager.get_texture("menu"), true);
     }
 
     void menu_state::cleanup() {

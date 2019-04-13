@@ -30,7 +30,6 @@ namespace jrpg {
         void pause() override;
 
       private:
-        jrpg::Texture _texture;
         sf::Sprite _sprite;
         sf::RectangleShape _rect;
         sf::Color _alpha;

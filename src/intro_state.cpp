@@ -14,16 +14,17 @@ namespace jrpg {
     void intro_state::init() {
         std::cout << "Intro State init\n";
 
-        // _texture = asset_manager::get_texture("intro", "res/intro.png");
+        auto &asset_manager = asset_manager::instance();
+        if (!asset_manager.load_texture("intro", "../res/intro.png")) {
+            return;
+        }
 
-        _texture = std::make_unique<sf::Texture>();
-        _texture->loadFromFile("../res/intro.png");
-        _sprite.setTexture(*_texture, true);
+        _sprite.setTexture(*asset_manager.get_texture("intro"), true);
 
         _alpha = sf::Color(0, 0, 0, 255);
 
         _rect.setFillColor(_alpha);
-        _rect.setSize(static_cast<sf::Vector2f>(_texture->getSize()));
+        _rect.setSize(static_cast<sf::Vector2f>(asset_manager.get_texture("intro")->getSize()));
     }
 
     void intro_state::cleanup() {
