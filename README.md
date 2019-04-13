@@ -1,6 +1,12 @@
 # jrpg-game-engine
 a simple JRPG game engine written in C++ with SFML
 
+## what it can do so far
+- add and switch to different states
+- load and get assets efficiently
+- add tiles to tilemaps
+- load tilemaps from an std::vector<int32_t>
+
 # Include rules:
 1. include SFML specific headers at the very top, any other external libraries follow next with an empty line
 2. standard headers next
