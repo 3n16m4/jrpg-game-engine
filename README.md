@@ -5,7 +5,7 @@ a simple JRPG game engine written in C++ with SFML
 - add and switch to different states
 - load and get assets efficiently
 - add tiles to tilemaps
-- load tilemaps from an std::vector<int32_t>
+- load tilemaps from .csv files
 
 # Include rules:
 1. include SFML specific headers at the very top, any other external libraries follow next with an empty line
@@ -15,4 +15,3 @@ a simple JRPG game engine written in C++ with SFML
 
 # TODO
 - include testing framework (google-test catch2, boost-test etc..)
-- implement tilemap parser for maps created with "Tiled" (https://www.mapeditor.org/)
