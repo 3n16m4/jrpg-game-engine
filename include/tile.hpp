@@ -25,8 +25,8 @@ namespace jrpg {
 
         const sf::Vector2u &get_tile_size() const;
 
-        void set_tile_id(std::size_t tile_id);
-        std::size_t get_tile_id() const;
+        void set_tile_id(std::int32_t tile_id);
+        std::int32_t get_tile_id() const;
 
         friend bool operator==(const tile &t1, const tile &t2);
         friend bool operator!=(const tile &t1, const tile &t2);
@@ -38,7 +38,7 @@ namespace jrpg {
         sf::VertexArray _vertices;
         Texture _texture;
         sf::Vector2u _tile_size;
-        std::size_t _tile_id;
+        std::int32_t _tile_id;
     };
 } // namespace jrpg
 

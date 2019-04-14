@@ -15,7 +15,7 @@ namespace jrpg {
         std::cout << "Intro State init\n";
 
         auto &asset_manager = asset_manager::instance();
-        if (!asset_manager.load_texture("intro", "../res/intro.png")) {
+        if (!asset_manager.load_texture("intro", "../res/assets/intro.png")) {
             return;
         }
 

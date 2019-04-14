@@ -14,7 +14,7 @@
 
 namespace jrpg {
     using TileAmount = std::vector<tile>::size_type;
-    using TileMap = std::vector<int32_t>;
+    using TileMap = std::vector<std::int32_t>;
 
     class tile_map final : public sf::Drawable {
       public:

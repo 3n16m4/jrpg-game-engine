@@ -14,8 +14,8 @@ namespace jrpg {
         std::cout << "Menu State init\n";
 
         auto &asset_manager = asset_manager::instance();
-        if (!asset_manager.load_texture("menu", "../res/menu.png")) {
-            return;
+        if (!asset_manager.load_texture("menu", "../res/assets/menu.png")) {
+            std::cout << "texture already exising\n";
         }
 
         _sprite.setTexture(*asset_manager.get_texture("menu"), true);

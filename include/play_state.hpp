@@ -8,9 +8,12 @@
 #include <SFML/Graphics/Texture.hpp>
 
 #include <iostream>
+#include <memory>
 
 #include "state_machine.hpp"
 #include "asset_manager.hpp"
+#include "tile_map.hpp"
+#include "tilemap_parser.hpp"
 
 namespace jrpg {
     class play_state final : public state {
@@ -31,6 +34,10 @@ namespace jrpg {
 
       private:
         sf::Sprite _sprite;
+
+        std::unique_ptr<jrpg::tile_map> _map;
+
+        bool _paused{};
     };
 } // namespace jrpg
 

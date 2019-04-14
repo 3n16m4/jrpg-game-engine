@@ -35,11 +35,11 @@ namespace jrpg {
         return _tile_size;
     }
 
-    void tile::set_tile_id(std::size_t tile_id) {
+    void tile::set_tile_id(std::int32_t tile_id) {
         _tile_id = tile_id;
     }
 
-    std::size_t tile::get_tile_id() const {
+    std::int32_t tile::get_tile_id() const {
         return _tile_id;
     }
 

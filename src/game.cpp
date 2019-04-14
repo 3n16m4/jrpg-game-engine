@@ -11,7 +11,7 @@ namespace jrpg {
     }
 
     void game::run() {
-        _window.create(sf::VideoMode(_width, _height), _title, sf::Style::Titlebar | sf::Style::Close);
+        _window.create(sf::VideoMode(_width, _height), _title);
         _window.setFramerateLimit(_framerate);
 
         while (_window.isOpen() && _machine.is_running()) {

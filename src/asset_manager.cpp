@@ -3,6 +3,11 @@
 
 namespace jrpg {
     bool asset_manager::load_texture(const std::string &name, const std::string &filename) {
+        const auto &it = _textures.find(name);
+        // already existing, don't load
+        if (it != _textures.end()) {
+            return false;
+        }
         Texture texture = std::make_shared<sf::Texture>();
         if (!texture->loadFromFile(filename)) {
             return false;
@@ -12,7 +17,7 @@ namespace jrpg {
     }
 
     Texture jrpg::asset_manager::get_texture(const std::string &name) {
-        const auto it = _textures.find(name);
+        const auto &it = _textures.find(name);
         return it == _textures.end() ? nullptr : _textures.at(name);
     }
 
@@ -26,7 +31,7 @@ namespace jrpg {
     }
 
     Font jrpg::asset_manager::get_font(const std::string &name) {
-        const auto it = _fonts.find(name);
+        const auto &it = _fonts.find(name);
         return it == _fonts.end() ? nullptr : _fonts.at(name);
     }
 

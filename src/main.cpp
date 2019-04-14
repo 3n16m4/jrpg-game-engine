@@ -1,37 +1,30 @@
-#include <sstream>
-#include <fstream>
-
 #include "../include/game.hpp"
 #include "../include/tile_map.hpp"
+#include "../include/tilemap_parser.hpp"
 
 int main() {
-    /*jrpg::game engine{640, 480, "jrpg game-engine"};
+    jrpg::game engine{640, 480, "jrpg game-engine"};
     std::cout << engine << '\n';
 
-    engine.run();*/
+    engine.run();
 
-    constexpr std::size_t TILE_SIZE_X = 16;
+    /*constexpr std::size_t TILE_SIZE_X = 16;
     constexpr std::size_t TILE_SIZE_Y = 16;
 
-    std::vector<int32_t> level;
-    level.reserve(10 * 12);
-
-    std::ifstream file("../res/maps/map_001.csv");
-
-    std::stringstream ss;
-    if (file) {
-        ss << file.rdbuf();
-        file.close();
+    jrpg::TileMap map_vec{};
+    jrpg::tilemap_parser parser{};
+    try {
+        map_vec = parser.parse("../res/maps/map_002.csv");
+    } catch (const std::runtime_error &e) {
+        std::cerr << e.what() << '\n';
+        return EXIT_FAILURE;
     }
 
-    std::string str;
-    while (std::getline(ss, str, ',')) {
-        const auto &tile_id = std::stoi(str);
-        level.emplace_back(tile_id);
-    }
+    const auto &map_name = parser.get_name();
 
-    jrpg::tile_map map("map_001", level.size(), 10, 12);
-    if (!map.load("../res/pokemon_emerald.png", level, {TILE_SIZE_X, TILE_SIZE_Y}, 10, 12)) {
+    jrpg::tile_map map(map_name, map_vec.size(), 20, 30);
+    if (!map.load("../res/tilesets/pokemon_emerald.png", map_vec, {TILE_SIZE_X, TILE_SIZE_Y}, map.get_width(),
+                  map.get_height())) {
         return EXIT_FAILURE;
     }
 
@@ -42,13 +35,13 @@ int main() {
     // Width = Map Size Width * Tile Size Width
     // Height = Map Size Height * Tile Size Height
     // = n x n pixels
-    std::cout << map.get_width() << ", " << map.get_height() << '\n';
+    std::cout << map.get_width() << "x" << map.get_height() << " pixels\n";
 
     const auto pixel_width = map.get_width() * TILE_SIZE_X;
     const auto pixel_height = map.get_height() * TILE_SIZE_Y;
 
     sf::RenderWindow window(sf::VideoMode(pixel_width, pixel_height), "SFML window");
-    window.setSize({512, 512});
+    // window.setSize({512, 512});
     window.setFramerateLimit(60);
 
     // Start the game loop
@@ -75,6 +68,7 @@ int main() {
         window.draw(map);
         // Update the window
         window.display();
-    }
+    }*/
+
     return EXIT_SUCCESS;
 }
