@@ -7,6 +7,7 @@ namespace jrpg {
 
     play_state::play_state(state_machine &machine, sf::RenderWindow &window) : state(machine, window) {
         std::cout << "Play State constructor\n";
+        init();
     }
 
     play_state::~play_state() {

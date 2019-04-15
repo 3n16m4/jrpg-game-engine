@@ -53,15 +53,15 @@ namespace jrpg {
     }
 
     void asset_manager::remove_texture(const std::string &name) {
-        _textures.erase(_textures.find(name));
+        _textures.erase(name);
     }
 
     void asset_manager::remove_font(const std::string &name) {
-        _fonts.erase(_fonts.find(name));
+        _fonts.erase(name);
     }
 
     void asset_manager::remove_sound_buffer(const std::string &name) {
-        _sound_buffers.erase(_sound_buffers.find(name));
+        _sound_buffers.erase(name);
     }
 
     Texture asset_manager::get_texture(const std::string &name) {

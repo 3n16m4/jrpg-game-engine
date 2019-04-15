@@ -4,6 +4,7 @@
 namespace jrpg {
     intro_state::intro_state(jrpg::state_machine &machine, sf::RenderWindow &window) : state{machine, window} {
         std::cout << "Intro State constructor\n";
+        init();
     }
 
     intro_state::~intro_state() {
@@ -19,12 +20,13 @@ namespace jrpg {
             return;
         }
 
-        _sprite.setTexture(*asset_manager.get_texture("intro"), true);
+        const auto &intro_texture = asset_manager.get_texture("intro");
+        _sprite.setTexture(*intro_texture, true);
 
         _alpha = sf::Color(0, 0, 0, 255);
 
         _rect.setFillColor(_alpha);
-        _rect.setSize(static_cast<sf::Vector2f>(asset_manager.get_texture("intro")->getSize()));
+        _rect.setSize(static_cast<sf::Vector2f>(intro_texture->getSize()));
     }
 
     void intro_state::cleanup() {

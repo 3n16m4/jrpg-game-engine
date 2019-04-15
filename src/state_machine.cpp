@@ -29,7 +29,6 @@ namespace jrpg {
                 }
             }
             _states.push(std::move(_next_state));
-            _states.top()->init();
             _adding = false;
         }
     }
@@ -49,7 +48,6 @@ namespace jrpg {
         _adding = false;
 
         while (!_states.empty()) {
-            _states.top()->cleanup();
             _states.pop();
         }
     }

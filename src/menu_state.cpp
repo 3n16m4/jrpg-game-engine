@@ -3,6 +3,7 @@
 namespace jrpg {
     menu_state::menu_state(state_machine &machine, sf::RenderWindow &window) : state{machine, window} {
         std::cout << "Menu State constructor\n";
+        init();
     }
 
     menu_state::~menu_state() {
