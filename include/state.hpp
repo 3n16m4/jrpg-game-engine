@@ -1,7 +1,8 @@
 #ifndef JRPG_GAME_ENGINE_STATE_HPP
 #define JRPG_GAME_ENGINE_STATE_HPP
 
-#include "state_machine.hpp"
+#include "utility/non_copyable.hpp"
+#include "utility/non_moveable.hpp"
 
 namespace jrpg {
     class state_machine;
@@ -12,7 +13,7 @@ namespace sf {
 }
 
 namespace jrpg {
-    class state {
+    class state : public non_copyable, public non_moveable {
       public:
         explicit state(state_machine &machine, sf::RenderWindow &window) : _machine(machine), _window(window) {
         }

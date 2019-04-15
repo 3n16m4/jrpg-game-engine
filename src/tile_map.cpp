@@ -13,11 +13,11 @@ namespace jrpg {
     bool tile_map::load(const std::string &filename, const TileMap &tiles, const sf::Vector2u &tileSize,
                         std::size_t width, std::size_t height) {
         auto &asset_manager = asset_manager::instance();
-        if (!asset_manager.load_texture("tile_set", filename)) {
+        if (!asset_manager.load_texture("tileset", filename)) {
             return false;
         }
 
-        const auto &tileset = asset_manager.get_texture("tile_set");
+        const auto &tileset = asset_manager.get_texture("tileset");
 
         // populate the vertex array, with one quad per tile
         for (std::size_t x = 0; x < width; ++x) {
@@ -37,7 +37,8 @@ namespace jrpg {
             }
         }
 
-        asset_manager.free_textures();
+        // remove the loaded tileset-texture afterwards
+        asset_manager.remove_texture("tileset");
 
         return true;
     }

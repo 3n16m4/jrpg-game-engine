@@ -12,11 +12,14 @@
 #include "asset_manager.hpp"
 #include "tile.hpp"
 
+#include "utility/non_copyable.hpp"
+#include "utility/non_moveable.hpp"
+
 namespace jrpg {
     using TileAmount = std::vector<tile>::size_type;
     using TileMap = std::vector<std::int32_t>;
 
-    class tile_map final : public sf::Drawable {
+    class tile_map final : public sf::Drawable, public non_copyable, public non_moveable {
       public:
         explicit tile_map(std::string name, TileAmount amount, std::size_t width, std::size_t height);
         ~tile_map() override;

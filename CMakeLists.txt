@@ -11,5 +11,5 @@ add_executable(${CMAKE_PROJECT_NAME}
         src/main.cpp include/game.hpp src/game.cpp include/state.hpp include/intro_state.hpp src/intro_state.cpp
         include/asset_manager.hpp src/asset_manager.cpp include/menu_state.hpp src/menu_state.cpp
         include/play_state.hpp src/play_state.cpp include/state_machine.hpp src/state_machine.cpp include/tile.hpp
-        src/tile.cpp include/tile_map.hpp src/tile_map.cpp include/singleton.hpp include/tilemap_parser.hpp src/tilemap_parser.cpp)
+        src/tile.cpp include/tile_map.hpp src/tile_map.cpp include/singleton.hpp include/tilemap_parser.hpp src/tilemap_parser.cpp include/utility/non_copyable.hpp include/utility/non_moveable.hpp)
 target_link_libraries(${CMAKE_PROJECT_NAME} sfml-graphics sfml-audio)

@@ -1,7 +1,9 @@
+#include <utility>
+
 #include "../include/tile.hpp"
 
 namespace jrpg {
-    tile::tile(Texture texture, const sf::Vector2u &size, const sf::Vector2f &pos) : tile{std::move(texture), size} {
+    tile::tile(const Texture &texture, const sf::Vector2u &size, const sf::Vector2f &pos) : tile{texture, size} {
         set_tile_position(pos);
     }
 

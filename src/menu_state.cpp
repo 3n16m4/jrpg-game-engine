@@ -15,7 +15,7 @@ namespace jrpg {
 
         auto &asset_manager = asset_manager::instance();
         if (!asset_manager.load_texture("menu", "../res/assets/menu.png")) {
-            std::cout << "texture already exising\n";
+            return;
         }
 
         _sprite.setTexture(*asset_manager.get_texture("menu"), true);
@@ -23,6 +23,7 @@ namespace jrpg {
 
     void menu_state::cleanup() {
         // cleanup assets from the asset manager etc.
+        asset_manager::instance().remove_texture("menu");
     }
 
     void menu_state::handle_events() {

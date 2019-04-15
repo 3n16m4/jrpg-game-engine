@@ -9,8 +9,11 @@
 
 #include "intro_state.hpp"
 
+#include "utility/non_copyable.hpp"
+#include "utility/non_moveable.hpp"
+
 namespace jrpg {
-    class game final {
+    class game final : public non_copyable, public non_moveable {
       public:
         explicit game(std::size_t width, std::size_t height, std::string title, std::size_t framerate = 60);
         ~game() = default;

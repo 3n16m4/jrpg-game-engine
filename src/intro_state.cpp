@@ -29,6 +29,7 @@ namespace jrpg {
 
     void intro_state::cleanup() {
         // cleanup assets from the asset manager etc.
+        asset_manager::instance().remove_texture("intro");
     }
 
     void intro_state::handle_events() {

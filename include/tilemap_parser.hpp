@@ -6,10 +6,13 @@
 #include <fstream>
 #include <sstream>
 
+#include "utility/non_copyable.hpp"
+#include "utility/non_moveable.hpp"
+
 namespace jrpg {
     using TileMap = std::vector<std::int32_t>;
 
-    class tilemap_parser final {
+    class tilemap_parser final : public non_copyable, public non_moveable {
       public:
         explicit tilemap_parser() = default;
         ~tilemap_parser() = default;

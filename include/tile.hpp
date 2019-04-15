@@ -14,7 +14,7 @@ namespace jrpg {
 
     class tile : public sf::Drawable, public sf::Transformable {
       public:
-        explicit tile(Texture texture, const sf::Vector2u &size, const sf::Vector2f &pos);
+        explicit tile(const Texture &texture, const sf::Vector2u &size, const sf::Vector2f &pos);
         explicit tile(Texture texture, const sf::Vector2u &size);
         ~tile() override = default;
 
