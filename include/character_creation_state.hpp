@@ -1,8 +1,6 @@
-#ifndef JRPG_GAME_ENGINE_MENU_STATE_HPP
-#define JRPG_GAME_ENGINE_MENU_STATE_HPP
+#ifndef JRPG_GAME_ENGINE_CHARACTER_CREATION_STATE_HPP
+#define JRPG_GAME_ENGINE_CHARACTER_CREATION_STATE_HPP
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <iostream>
@@ -11,10 +9,10 @@
 #include "asset_manager.hpp"
 
 namespace jrpg {
-    class menu_state final : public state {
+    class character_creation_state final : public state {
       public:
-        explicit menu_state(state_machine &machine, sf::RenderWindow &window);
-        ~menu_state() override;
+        explicit character_creation_state(jrpg::state_machine &machine, sf::RenderWindow &window);
+        ~character_creation_state() override;
 
         void init() override;
         void cleanup() override;
@@ -26,10 +24,7 @@ namespace jrpg {
 
         void resume() override;
         void pause() override;
-
-      private:
-        sf::Sprite _sprite;
     };
 } // namespace jrpg
 
-#endif // JRPG_GAME_ENGINE_MENU_STATE_HPP
+#endif // JRPG_GAME_ENGINE_CHARACTER_CREATION_STATE_HPP

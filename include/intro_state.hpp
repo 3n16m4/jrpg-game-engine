@@ -1,11 +1,10 @@
 #ifndef JRPG_GAME_ENGINE_INTRO_STATE_HPP
 #define JRPG_GAME_ENGINE_INTRO_STATE_HPP
 
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Texture.hpp>
 
 #include <iostream>
 

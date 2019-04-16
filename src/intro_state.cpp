@@ -2,7 +2,7 @@
 #include "../include/play_state.hpp"
 
 namespace jrpg {
-    intro_state::intro_state(jrpg::state_machine &machine, sf::RenderWindow &window) : state{machine, window} {
+    intro_state::intro_state(jrpg::state_machine &machine, sf::RenderWindow &window) : state(machine, window) {
         std::cout << "Intro State constructor\n";
         init();
     }

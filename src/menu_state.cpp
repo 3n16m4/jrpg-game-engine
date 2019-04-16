@@ -1,7 +1,7 @@
 #include "../include/menu_state.hpp"
 
 namespace jrpg {
-    menu_state::menu_state(state_machine &machine, sf::RenderWindow &window) : state{machine, window} {
+    menu_state::menu_state(state_machine &machine, sf::RenderWindow &window) : state(machine, window) {
         std::cout << "Menu State constructor\n";
         init();
     }

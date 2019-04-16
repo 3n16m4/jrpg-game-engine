@@ -10,9 +10,9 @@ ConstructorInitializerIndentWidth: 4
 ContinuationIndentWidth: 4
 TabWidth: 4
 ObjCBlockIndentWidth: 4
-AlwaysBreakTemplateDeclarations: true
 UseTab: Never
 SortIncludes: false
+AlwaysBreakTemplateDeclarations: true
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
