@@ -39,3 +39,6 @@ cmake-build-relwithdebinfo
 
 # ide based files
 .idea/workspace.xml
+
+# macos files
+.DS_Store
