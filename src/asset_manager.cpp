@@ -64,6 +64,18 @@ namespace jrpg {
         _sound_buffers.erase(name);
     }
 
+    std::size_t asset_manager::textures_size() const {
+        return _textures.size();
+    }
+    
+    std::size_t asset_manager::fonts_size() const {
+        return _fonts.size();
+    }
+
+    std::size_t asset_manager::soundbuffers_size() const {
+        return _sound_buffers.size();
+    }
+
     Texture asset_manager::get_texture(const std::string &name) {
         return !exists_texture(name) ? nullptr : _textures.at(name);
     }

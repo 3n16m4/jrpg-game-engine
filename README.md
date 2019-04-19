@@ -14,4 +14,5 @@ a simple JRPG game engine written in C++ with SFML
 4. leave an empty line if there is only 1 include for each different header location
 
 # TODO
+- implement map layers in tilemap parser and tilemap ( PoC currently works, just encapsulate it and more cleanly :) )
 - include testing framework (google-test catch2, boost-test etc..)

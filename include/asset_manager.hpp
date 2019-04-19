@@ -33,6 +33,10 @@ namespace jrpg {
         void remove_font(const std::string &name);
         void remove_sound_buffer(const std::string &name);
 
+        std::size_t textures_size() const; 
+        std::size_t fonts_size() const; 
+        std::size_t soundbuffers_size() const; 
+
         Texture get_texture(const std::string &name);
         Font get_font(const std::string &name);
         SoundBuffer get_sound_buffer(const std::string &name);

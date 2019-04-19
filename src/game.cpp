@@ -1,10 +1,10 @@
 #include "../include/game.hpp"
 
 namespace jrpg {
-    game::game(std::size_t width, std::size_t height, std::string title, std::size_t framerate) {
+    game::game(std::size_t width, std::size_t height, std::string title, std::size_t framerateLimit) {
         _width = width;
         _height = height;
-        _framerate = framerate;
+        _framerate_limit = framerateLimit;
         _title = std::move(title);
 
         _machine.push<intro_state>(_machine, _window);
@@ -12,7 +12,7 @@ namespace jrpg {
 
     void game::run() {
         _window.create(sf::VideoMode(_width, _height), _title);
-        _window.setFramerateLimit(_framerate);
+        _window.setFramerateLimit(_framerate_limit);
 
         while (_window.isOpen() && _machine.is_running()) {
             // handle input, update and draw each game state
@@ -35,8 +35,8 @@ namespace jrpg {
         return _height;
     }
 
-    std::size_t game::get_framerate() const {
-        return _framerate;
+    std::size_t game::get_framerate_limit() const {
+        return _framerate_limit;
     }
 
     const std::string &game::get_title() const {
@@ -44,8 +44,8 @@ namespace jrpg {
     }
 
     std::ostream &operator<<(std::ostream &os, const game &game) {
-        os << "_width: " << game._width << " _height: " << game._height << " _framerate: " << game._framerate
-           << " _title: " << game._title;
+        os << "_width: " << game._width << " _height: " << game._height
+           << " _framerate_limit: " << game._framerate_limit << " _title: " << game._title;
         return os;
     }
 } // namespace jrpg

@@ -34,6 +34,9 @@ namespace jrpg {
         sf::Sprite _sprite;
 
         std::unique_ptr<jrpg::tile_map> _map;
+        std::unique_ptr<jrpg::tile_map> _map_2;
+        std::unique_ptr<jrpg::tile_map> _map_3;
+        std::unique_ptr<jrpg::tile_map> _map_4;
 
         bool _paused{};
     };
