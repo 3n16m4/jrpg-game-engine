@@ -11,7 +11,6 @@
 #include "state_machine.hpp"
 #include "asset_manager.hpp"
 #include "tile_map.hpp"
-#include "tilemap_parser.hpp"
 
 namespace jrpg {
     class play_state final : public state {
@@ -32,11 +31,7 @@ namespace jrpg {
 
       private:
         sf::Sprite _sprite;
-
-        std::unique_ptr<jrpg::tile_map> _map;
-        std::unique_ptr<jrpg::tile_map> _map_2;
-        std::unique_ptr<jrpg::tile_map> _map_3;
-        std::unique_ptr<jrpg::tile_map> _map_4;
+        std::unique_ptr<tile_map> _map;
 
         bool _paused{};
     };

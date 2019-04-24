@@ -37,6 +37,7 @@ namespace jrpg {
         std::size_t fonts_size() const; 
         std::size_t soundbuffers_size() const; 
 
+        // replace with std::optional<T>
         Texture get_texture(const std::string &name);
         Font get_font(const std::string &name);
         SoundBuffer get_sound_buffer(const std::string &name);

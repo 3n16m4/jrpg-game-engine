@@ -7,50 +7,36 @@
 
 #include <cmath>
 #include <string>
-#include <vector>
+#include <map>
 
+#include "tile_map_layer.hpp"
 #include "asset_manager.hpp"
-#include "tile.hpp"
 
 #include "utility/non_copyable.hpp"
 #include "utility/non_moveable.hpp"
 
 namespace jrpg {
-    using TileAmount = std::vector<tile>::size_type;
-    using TileMap = std::vector<std::int32_t>;
+    using map_type = std::map<std::uint8_t, tile_map_layer>;
 
     class tile_map final : public sf::Drawable, public non_copyable, public non_moveable {
       public:
-        explicit tile_map(std::string name, TileAmount amount, std::size_t width, std::size_t height);
+        explicit tile_map(std::string name);
         ~tile_map() override;
 
-        bool load(const std::string &filename, const TileMap &tiles, const sf::Vector2u &tileSize, std::size_t width,
-                  std::size_t height);
+        bool load_tileset(const std::string &filename);
 
-        void add(tile &&tile, std::size_t x, std::size_t y, std::size_t tw, std::size_t th);
-        bool remove(const sf::Vector2f &tilePos);
-        void clear();
+        void add_layer(std::uint8_t layerId, tile_map_layer&& layer);
+        void remove_layer(std::uint8_t layerId);
 
-        const std::string &get_name() const;
+        const std::string &name() const;
         void set_name(const std::string &name);
-
-        std::size_t get_width() const;
-        void set_width(std::size_t width);
-
-        std::size_t get_height() const;
-        void set_height(std::size_t height);
-
-        const std::vector<tile> &get_tiles() const;
 
       protected:
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
       private:
         std::string _name;
-        std::size_t _width;
-        std::size_t _height;
-
-        std::vector<tile> _tiles;
+        map_type _map;
     };
 } // namespace jrpg
 

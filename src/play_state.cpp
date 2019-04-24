@@ -18,52 +18,53 @@ namespace jrpg {
     void play_state::init() {
         std::cout << "Play State init\n";
 
-        jrpg::TileMap map_ground_tiles{};
-        jrpg::TileMap map_tree_tiles{};
-        jrpg::TileMap map_houses_tiles{};
-        jrpg::TileMap map_deco_tiles{};
-
-        jrpg::tilemap_parser parser{};
-        jrpg::tilemap_parser parser_2{};
-        jrpg::tilemap_parser parser_3{};
-        jrpg::tilemap_parser parser_4{};
-
-        try {
-            map_ground_tiles = parser.parse("../res/maps/some_map_Ground.csv");
-            map_tree_tiles = parser_2.parse("../res/maps/some_map_Trees.csv");
-            map_houses_tiles = parser_3.parse("../res/maps/some_map_Houses.csv");
-            map_deco_tiles = parser_4.parse("../res/maps/some_map_Deco.csv");
-        } catch (const std::runtime_error &e) {
-            std::cerr << e.what() << '\n';
+        // initialize the map
+        _map = std::make_unique<tile_map>("village_001");
+        if (!_map->load_tileset("../res/tilesets/tileset-shinygold.png")) {
             return;
         }
 
-        const auto &map_name = parser.get_name();
-        const auto &map_name_2 = parser_2.get_name();
-        const auto &map_name_3 = parser_3.get_name();
-        const auto &map_name_4 = parser_4.get_name();
+        // setup map layers
+        tile_map_layer ground_layer("../res/maps/some_map_Ground.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
+        tile_map_layer trees_layer("../res/maps/some_map_Trees.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
+        tile_map_layer houses_layer("../res/maps/some_map_Houses.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
+        tile_map_layer deco_layer("../res/maps/some_map_Deco.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
 
-        _map = std::make_unique<jrpg::tile_map>(map_name, map_ground_tiles.size(), 20, 30);
-        _map_2 = std::make_unique<jrpg::tile_map>(map_name_2, map_tree_tiles.size(), 20, 30);
-        _map_3 = std::make_unique<jrpg::tile_map>(map_name_3, map_houses_tiles.size(), 20, 30);
-        _map_4 = std::make_unique<jrpg::tile_map>(map_name_4, map_deco_tiles.size(), 20, 30);
+        _map->add_layer(0, std::move(ground_layer));
+        _map->add_layer(1, std::move(trees_layer));
+        _map->add_layer(2, std::move(houses_layer));
+        _map->add_layer(3, std::move(deco_layer));
 
-        if (!_map->load("../res/tilesets/tileset-shinygold.png", map_ground_tiles, {TILE_SIZE_X, TILE_SIZE_Y}, _map->get_width(),
-                        _map->get_height())) {
-            return;
-        }
-        if (!_map_2->load("../res/tilesets/tileset-shinygold.png", map_tree_tiles, {TILE_SIZE_X, TILE_SIZE_Y}, _map_2->get_width(),
-                        _map_2->get_height())) {
-            return;
-        }
-        if (!_map_3->load("../res/tilesets/tileset-shinygold.png", map_houses_tiles, {TILE_SIZE_X, TILE_SIZE_Y}, _map_2->get_width(),
-                        _map_2->get_height())) {
-            return;
-        }
-        if (!_map_4->load("../res/tilesets/tileset-shinygold.png", map_deco_tiles, {TILE_SIZE_X, TILE_SIZE_Y}, _map_2->get_width(),
-                        _map_2->get_height())) {
-            return;
-        }
+        /*
+         *
+         * tile_map:
+         * -    contains all layers for the necessary map [done]
+         * -    add layers / remove layers [done]
+         * -    can load a tileset [done]
+         * -    has a mapname from constructor [done]
+         * -    drawable (draws all loaded layers) [done]
+         *
+         * tile_map *map = new tile_map("village_001", width, height);
+         *
+         * tile_map_layer:
+         * -    has std::vector<tile> tiles for each layer containing width and height [done]
+         * -    loads tiles into layers using parser [done]
+         * -    add / remove tiles from layer [done]
+         * -    clear whole layer [done]
+         * -    drawable [done]
+         * -    layer derives name from parsed layer [done]
+         *
+         * tile_map_layer *ground_layer = new tile_map_layer("ground.csv", width, height);
+         * tile_map_layer *trees_layer = new tile_map_layer("trees.csv", width, height);
+         *
+         * map.add_layer(&ground_layer);
+         * map.add_layer(&trees_layer);
+         *
+         * in draw method:
+         *
+         * _window.draw(map);   this will call the overriden draw method in tile_map and render
+         *                      each layer accordingly.
+         */
 
         // remove tileset
         auto &asset_manager = asset_manager::instance();
@@ -126,10 +127,9 @@ namespace jrpg {
             return;
         }
         _window.clear();
+
         _window.draw(*_map);
-        _window.draw(*_map_2);
-        _window.draw(*_map_3);
-        _window.draw(*_map_4);
+
         _window.display();
     }
 

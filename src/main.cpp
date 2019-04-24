@@ -1,9 +1,9 @@
 #include "../include/game.hpp"
 #include "../include/tile_map.hpp"
-#include "../include/tilemap_parser.hpp"
+#include "../include/tile_map_parser.hpp"
 
 int main() {
-    jrpg::game engine{640, 480, "jrpg game-engine"};
+    jrpg::game engine{400, 512, "jrpg game-engine"};
     std::cout << engine << '\n';
 
     engine.run();

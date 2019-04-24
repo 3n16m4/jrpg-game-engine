@@ -15,4 +15,24 @@ a simple JRPG game engine written in C++ with SFML
 
 # TODO
 - implement map layers in tilemap parser and tilemap ( PoC currently works, just encapsulate it and more cleanly :) )
+
+using std::vector<tile> = Layer;
+using std::vector<Layer> = Map;
+
+Map.at(0) = Layer 0
+Map.at(1) = Layer 1
+...
+Map.at(n) = Layer n
+
+rendering:
+for (auto &map : Map) {
+    for (auto &tile : Layer) {
+        target.draw(tile, states);
+    }
+}
+
+1. go through map
+2. go through each tile in layer
+3. render the current tile
+
 - include testing framework (google-test catch2, boost-test etc..)

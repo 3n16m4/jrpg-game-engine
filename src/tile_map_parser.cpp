@@ -1,10 +1,10 @@
-#include "../include/tilemap_parser.hpp"
+#include "../include/tile_map_parser.hpp"
 
 namespace jrpg {
-    const TileMap jrpg::tilemap_parser::parse(const std::string &filename) {
+    const layer_level_type jrpg::tile_map_parser::parse(const std::string &filename) {
         std::ifstream file(filename, std::ios::binary);
         if (!file.is_open()) {
-            throw std::runtime_error("Exception: failed to open file: " + filename);
+            throw parse_map_exception("Exception: failed to open file: " + filename);
         }
 
         // set name for map
@@ -14,7 +14,7 @@ namespace jrpg {
             // without extension and path separators
             _name = filename.substr(0, dot).substr(n);
         } else {
-            throw std::runtime_error("Exception: error on setting filename in tilemap parser");
+            throw parse_map_name_exception("Exception: failed to set map-name");
         }
 
         std::string line;
@@ -24,7 +24,7 @@ namespace jrpg {
             ss << line << '\n';
         }
 
-        TileMap tile_map{};
+        layer_level_type tile_map{};
         std::int32_t tile_id;
         while (ss >> tile_id) {
             tile_map.emplace_back(tile_id);
@@ -34,7 +34,7 @@ namespace jrpg {
         return tile_map;
     }
 
-    const std::string &tilemap_parser::get_name() const {
+    const std::string &tile_map_parser::name() const {
         return _name;
     }
 } // namespace jrpg
