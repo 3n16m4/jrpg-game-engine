@@ -72,8 +72,8 @@ namespace jrpg {
     void intro_state::update(float deltaTime) {
         if (_alpha.a != 0) {
             --_alpha.a;
-            _rect.setFillColor(_alpha);
         }
+        _rect.setFillColor(_alpha);
     }
 
     void intro_state::draw(float deltaTime) {
