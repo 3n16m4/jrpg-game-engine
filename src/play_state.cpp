@@ -2,10 +2,10 @@
 #include "../include/menu_state.hpp"
 
 namespace jrpg {
-    constexpr std::size_t TILE_SIZE_X = 16;
-    constexpr std::size_t TILE_SIZE_Y = 16;
-    constexpr std::size_t MAP_WIDTH   = 25;
-    constexpr std::size_t MAP_HEIGHT  = 25;
+    constexpr static std::size_t TILE_SIZE_X = 16;
+    constexpr static std::size_t TILE_SIZE_Y = 16;
+    constexpr static std::size_t MAP_WIDTH   = 25;
+    constexpr static std::size_t MAP_HEIGHT  = 32;
 
     play_state::play_state(state_machine &machine, sf::RenderWindow &window) : state(machine, window) {
         std::cout << "Play State constructor\n";
