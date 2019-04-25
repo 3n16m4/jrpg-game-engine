@@ -4,6 +4,8 @@
 namespace jrpg {
     constexpr std::size_t TILE_SIZE_X = 16;
     constexpr std::size_t TILE_SIZE_Y = 16;
+    constexpr std::size_t MAP_WIDTH   = 25;
+    constexpr std::size_t MAP_HEIGHT  = 25;
 
     play_state::play_state(state_machine &machine, sf::RenderWindow &window) : state(machine, window) {
         std::cout << "Play State constructor\n";
@@ -25,46 +27,35 @@ namespace jrpg {
         }
 
         // setup map layers
-        tile_map_layer ground_layer("../res/maps/some_map_Ground.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
-        tile_map_layer trees_layer("../res/maps/some_map_Trees.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
-        tile_map_layer houses_layer("../res/maps/some_map_Houses.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
-        tile_map_layer deco_layer("../res/maps/some_map_Deco.csv", {TILE_SIZE_X, TILE_SIZE_Y}, 25, 32);
+        tile_map_layer ground_layer("../res/maps/some_map_Ground.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
+        tile_map_layer trees_layer("../res/maps/some_map_Trees.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
+        tile_map_layer houses_layer("../res/maps/some_map_Houses.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
+        tile_map_layer deco_layer("../res/maps/some_map_Deco.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
+
+        std::cout << "name: " << ground_layer.name() << '\n';
+        std::cout << "name: " << trees_layer.name() << '\n';
+        std::cout << "name: " << houses_layer.name() << '\n';
+        std::cout << "name: " << deco_layer.name() << '\n';
+
+        std::cout << "size: " << ground_layer.size() << '\n';
+        std::cout << "size: " << trees_layer.size() << '\n';
+        std::cout << "size: " << houses_layer.size() << '\n';
+        std::cout << "size: " << deco_layer.size() << '\n';
+
+        std::cout << "width: " << ground_layer.width() << '\n';
+        std::cout << "width: " << trees_layer.width() << '\n';
+        std::cout << "width: " << houses_layer.width() << '\n';
+        std::cout << "width: " << deco_layer.width() << '\n';
+
+        std::cout << "height: " << ground_layer.height() << '\n';
+        std::cout << "height: " << trees_layer.height() << '\n';
+        std::cout << "height: " << houses_layer.height() << '\n';
+        std::cout << "height: " << deco_layer.height() << '\n';
 
         _map->add_layer(0, std::move(ground_layer));
         _map->add_layer(1, std::move(trees_layer));
         _map->add_layer(2, std::move(houses_layer));
         _map->add_layer(3, std::move(deco_layer));
-
-        /*
-         *
-         * tile_map:
-         * -    contains all layers for the necessary map [done]
-         * -    add layers / remove layers [done]
-         * -    can load a tileset [done]
-         * -    has a mapname from constructor [done]
-         * -    drawable (draws all loaded layers) [done]
-         *
-         * tile_map *map = new tile_map("village_001", width, height);
-         *
-         * tile_map_layer:
-         * -    has std::vector<tile> tiles for each layer containing width and height [done]
-         * -    loads tiles into layers using parser [done]
-         * -    add / remove tiles from layer [done]
-         * -    clear whole layer [done]
-         * -    drawable [done]
-         * -    layer derives name from parsed layer [done]
-         *
-         * tile_map_layer *ground_layer = new tile_map_layer("ground.csv", width, height);
-         * tile_map_layer *trees_layer = new tile_map_layer("trees.csv", width, height);
-         *
-         * map.add_layer(&ground_layer);
-         * map.add_layer(&trees_layer);
-         *
-         * in draw method:
-         *
-         * _window.draw(map);   this will call the overriden draw method in tile_map and render
-         *                      each layer accordingly.
-         */
 
         // remove tileset
         auto &asset_manager = asset_manager::instance();

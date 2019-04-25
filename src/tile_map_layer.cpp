@@ -18,7 +18,6 @@ namespace jrpg {
         }
 
         _name = parser.name();
-        _size = level.size();
 
         auto &asset_manager = asset_manager::instance();
         const auto &tileset = asset_manager.get_texture("tileset");
@@ -39,7 +38,7 @@ namespace jrpg {
                 const auto tw = tile_number % (tileset->getSize().x / tile.get_tile_size().x);
                 const auto th = tile_number / (tileset->getSize().x / tile.get_tile_size().x);
 
-                // add the tile to the map
+                // add the tile to the layer
                 add(std::move(tile), x, y, tw, th);
             }
         }
@@ -69,7 +68,7 @@ namespace jrpg {
     }
 
     layer_size_type tile_map_layer::size() const {
-        return _size;
+        return _layer.size();
     }
 
     const std::string &tile_map_layer::name() const {

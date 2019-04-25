@@ -41,8 +41,6 @@ namespace jrpg {
         layer_type _layer;
 
         std::string _name;
-        layer_size_type _size;
-
         std::size_t _width;
         std::size_t _height;
     };
