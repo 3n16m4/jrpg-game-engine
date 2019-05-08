@@ -6,7 +6,6 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <iostream>
-#include <memory>
 
 #include "state_machine.hpp"
 #include "asset_manager.hpp"
@@ -31,7 +30,7 @@ namespace jrpg {
 
       private:
         sf::Sprite _sprite;
-        std::unique_ptr<tile_map> _map;
+        tile_map _village_map;
 
         bool _paused{};
     };

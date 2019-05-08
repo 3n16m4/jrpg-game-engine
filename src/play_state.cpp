@@ -4,10 +4,11 @@
 namespace jrpg {
     constexpr static std::size_t TILE_SIZE_X = 16;
     constexpr static std::size_t TILE_SIZE_Y = 16;
-    constexpr static std::size_t MAP_WIDTH   = 25;
-    constexpr static std::size_t MAP_HEIGHT  = 32;
+    constexpr static std::size_t MAP_WIDTH = 25;
+    constexpr static std::size_t MAP_HEIGHT = 32;
 
-    play_state::play_state(state_machine &machine, sf::RenderWindow &window) : state(machine, window) {
+    play_state::play_state(state_machine &machine, sf::RenderWindow &window)
+        : state(machine, window), _village_map("village_001") {
         std::cout << "Play State constructor\n";
         init();
     }
@@ -20,16 +21,16 @@ namespace jrpg {
     void play_state::init() {
         std::cout << "Play State init\n";
 
-        // initialize the map
-        _map = std::make_unique<tile_map>("village_001");
-        if (!_map->load_tileset("../res/tilesets/tileset-shinygold.png")) {
+        if (!_village_map.load_tileset("../res/tilesets/tileset-shinygold.png")) {
             return;
         }
 
         // setup map layers
-        tile_map_layer ground_layer("../res/maps/some_map_Ground.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
+        tile_map_layer ground_layer("../res/maps/some_map_Ground.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH,
+                                    MAP_HEIGHT);
         tile_map_layer trees_layer("../res/maps/some_map_Trees.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
-        tile_map_layer houses_layer("../res/maps/some_map_Houses.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
+        tile_map_layer houses_layer("../res/maps/some_map_Houses.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH,
+                                    MAP_HEIGHT);
         tile_map_layer deco_layer("../res/maps/some_map_Deco.csv", {TILE_SIZE_X, TILE_SIZE_Y}, MAP_WIDTH, MAP_HEIGHT);
 
         std::cout << "name: " << ground_layer.name() << '\n';
@@ -52,10 +53,10 @@ namespace jrpg {
         std::cout << "height: " << houses_layer.height() << '\n';
         std::cout << "height: " << deco_layer.height() << '\n';
 
-        _map->add_layer(0, std::move(ground_layer));
-        _map->add_layer(1, std::move(trees_layer));
-        _map->add_layer(2, std::move(houses_layer));
-        _map->add_layer(3, std::move(deco_layer));
+        _village_map.add_layer(0, std::move(ground_layer));
+        _village_map.add_layer(1, std::move(trees_layer));
+        _village_map.add_layer(2, std::move(houses_layer));
+        _village_map.add_layer(3, std::move(deco_layer));
 
         // remove tileset
         auto &asset_manager = asset_manager::instance();
@@ -119,7 +120,7 @@ namespace jrpg {
         }
         _window.clear();
 
-        _window.draw(*_map);
+        _window.draw(_village_map);
 
         _window.display();
     }
